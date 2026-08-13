@@ -2,7 +2,7 @@
  * The entry files for the separated hooks
  */
 
-import { i18n as userland } from "../../../../i18n/index"; 
+import { i18n as userland } from "./../../i18n/index";
 import { I18N } from "./types";
 import { LanguageDataStore } from "./enums/languageDataStore";
 
@@ -56,19 +56,19 @@ const i18n = (): I18N | Error => {
 
   if (Object.keys(userI18n.translations).length < 1) {
     throw new Error(
-      `Missing translations. Did you import and add the tranlations in 'i18n/index.js'?`
+      `Missing translations. Did you import and add the tranlations in 'i18n/index.js'?`,
     );
   }
 
   if (userI18n.defaultLang.length === 0) {
     throw new Error(
-      `Missing default language. Did you set 'defaultLang' in 'i18n/index.js'?`
+      `Missing default language. Did you set 'defaultLang' in 'i18n/index.js'?`,
     );
   }
 
   if (!userI18n.translations[userI18n.defaultLang]) {
     throw new Error(
-      `Invalid default language '${userI18n.defaultLang}'. Check your 'defaultLang' in 'i18n/index.js'?`
+      `Invalid default language '${userI18n.defaultLang}'. Check your 'defaultLang' in 'i18n/index.js'?`,
     );
   }
 

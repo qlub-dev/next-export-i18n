@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Runs `handler` after every render and whenever `document` fires `type`, while keeping
- * exactly one listener registered per hook instance.
+ * Runs `handler` once on subscribe, then whenever `document` fires `type`, keeping exactly
+ * one listener registered per hook instance.
  *
- * The ref lets the listener stay mounted across renders without ever reading a stale
- * closure, so consumers do not re-register on each render.
+ * The ref lets the listener stay subscribed across renders without ever reading a stale
+ * closure, so consumers never re-register.
  */
 export default function useStableDocumentListener(
   type: string,
@@ -16,9 +16,7 @@ export default function useStableDocumentListener(
 
   useEffect(() => {
     handlerRef.current();
-  });
 
-  useEffect(() => {
     const listener = () => handlerRef.current();
 
     document.addEventListener(type, listener);
